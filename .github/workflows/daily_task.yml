@@ -2,9 +2,8 @@ name: Daily Keyword Search
 
 on:
   schedule:
-    # Chạy vào 00:00 UTC hàng ngày (tức 7:00 sáng VN)
-    - cron: '0 0 * * *'
-  # Cho phép bấm nút chạy thủ công để test
+    # 00:05 UTC = 07:05 sáng giờ Việt Nam
+    - cron: '5 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -28,6 +27,5 @@ jobs:
     - name: Run Search Script
       env:
         GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-        GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-        SEARCH_ENGINE_ID: ${{ secrets.SEARCH_ENGINE_ID }}
+        SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
       run: python main.py
